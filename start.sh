@@ -15,10 +15,10 @@ fi
 if [ -z "$CLUSTERED" ]; then
   exec rabbitmq-server $@
 else
+    sleep 10 # for kubernetes svc to set endpoint
   if [ -z "$CLUSTER_WITH" ]; then
     exec rabbitmq-server $@
   else
-    sleep 10 # for kubernetes svc to set endpoint
     rabbitmq-server -detached
     rabbitmqctl stop_app
     rabbitmqctl join_cluster rabbit@$CLUSTER_WITH
