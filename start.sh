@@ -1,6 +1,9 @@
 #!/bin/bash
 
 ulimit -n 10240
+if [ ! -d "/data" ]; then
+  mkdir /data
+fi
 chown -R rabbitmq:rabbitmq /data
 
 if [ $ECOOKIE ]; then
