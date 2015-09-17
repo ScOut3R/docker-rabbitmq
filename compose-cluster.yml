@@ -1,0 +1,35 @@
+rabbit1:
+  build: .
+  hostname: "rabbit1"
+  ports:
+    - "5672"
+    - "15672"
+  environment:
+    - ECOOKIE=FKr3iWQfLw4o
+
+rabbit2:
+  build: .
+  hostname: "rabbit2"
+  links:
+    - "rabbit1"
+  environment:
+    - CLUSTERED=true
+    - CLUSTER_WITH=rabbit1
+    - ECOOKIE=FKr3iWQfLw4o
+  ports:
+    - "5672"
+    - "15672"
+
+rabbit3:
+  build: .
+  hostname: "rabbit3"
+  links:
+    - "rabbit1"
+    - "rabbit2"
+  environment:
+    - CLUSTERED=true
+    - CLUSTER_WITH=rabbit1
+    - ECOOKIE=FKr3iWQfLw4o
+  ports:
+    - "5672"
+    - "15672"
