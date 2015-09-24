@@ -5,7 +5,7 @@ RUN echo "deb http://www.rabbitmq.com/debian/ testing main" > /etc/apt/sources.l
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN  apt-get update && apt-get upgrade -y && apt-get install -y rabbitmq-server
+RUN  apt-get update && apt-get upgrade -y && apt-get install -y rabbitmq-server=3.5.5-1
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN rabbitmq-plugins enable rabbitmq_management
